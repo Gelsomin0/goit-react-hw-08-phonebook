@@ -1,2 +1,1 @@
-export * from './Home';
-export * from './Contacts';
+export * from './Home/Home';
