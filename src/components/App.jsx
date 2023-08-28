@@ -2,15 +2,23 @@ import { Route, Routes } from "react-router-dom";
 import { Container } from "@mui/material";
 import { Login, Navigation, Register, Contacts } from './index';
 import { Home } from '../page/index';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { refreshUser } from "redux/auth/operations";
+import { getToken } from "redux/auth/selectors";
+import { getAllContacts } from "redux/contacts/operations";
 
 export const App = () => {
   const dispatch = useDispatch();
+  const isTokenHere = useSelector(getToken);
+  console.log(isTokenHere);
 
   useEffect(() => {
     dispatch(refreshUser());
+
+    if (isTokenHere !== null) {
+      dispatch(getAllContacts);
+    }
   }, [dispatch]);
 
   return (

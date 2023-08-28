@@ -11,6 +11,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { contactsSlice } from './contacts/contactsSlice';
 
 const persistConfig = {
   key: 'currentToken',
@@ -20,7 +21,8 @@ const persistConfig = {
 
 export const store = configureStore({
     reducer: {
-        auth: persistReducer(persistConfig, authSlice.reducer),
+    auth: persistReducer(persistConfig, authSlice.reducer),
+      contacts: contactsSlice.reducer,
     },
     middleware(getDefaultMiddleware) {
       return getDefaultMiddleware({
