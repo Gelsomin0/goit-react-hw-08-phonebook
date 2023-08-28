@@ -2,8 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { Container } from "@mui/material";
 import { Login, Navigation, Register, Contacts } from './index';
 import { Home } from '../page/index';
-import { useDispatch, useSelector } from "react-redux";
-import { getToken } from "redux/auth/selectors";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { refreshUser } from "redux/auth/operations";
 
