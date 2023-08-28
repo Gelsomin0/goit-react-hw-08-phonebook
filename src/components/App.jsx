@@ -8,7 +8,6 @@ import { useEffect } from "react";
 import { refreshUser } from "redux/auth/operations";
 
 export const App = () => {
-  const currentToken = useSelector(getToken);
   const dispatch = useDispatch();
 
   useEffect(() => {
