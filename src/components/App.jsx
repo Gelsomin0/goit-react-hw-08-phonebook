@@ -1,37 +1,41 @@
 import { Route, Routes } from "react-router-dom";
 import { Container } from "@mui/material";
-import { Login, Navigation, Register, Contacts } from './index';
-import { Home } from '../page/index';
+import {
+  Navigation,
+  PrivateRoute,
+  PublicRoute,
+} from './index';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { refreshUser } from "redux/auth/operations";
-import { getToken } from "redux/auth/selectors";
+import { getIsFetchingCurrentUser, getToken } from "redux/auth/selectors";
 import { getAllContacts } from "redux/contacts/operations";
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isTokenHere = useSelector(getToken);
-  console.log(isTokenHere);
-
+  const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
+  // const isTokenHere = useSelector(getToken);
+  
   useEffect(() => {
     dispatch(refreshUser());
-
-    if (isTokenHere !== null) {
-      dispatch(getAllContacts);
-    }
+    
+    // if (isTokenHere !== null) {
+    //   dispatch(getAllContacts());
+    // }
   }, [dispatch]);
 
-  return (
-    <div> 
+  return (!isFetchingCurrentUser && (
+    <div>
       <Container>
-        <Navigation/>
+        <Navigation />
         <Routes>
-          <Route path='/' index element={ <Home /> } />
-          <Route path='/contacts' element={ <Contacts /> } />
-          <Route path='/login' element={ <Login />} />
-          <Route path='/register' element={ <Register /> } />
+          <Route path='/' index element={<PublicRoute route='/' />} />
+          <Route path='/contacts' element={<PrivateRoute route='contacts' />} />
+          <Route path='/favorite_contacts' element={<PrivateRoute route='favorite_contacts' />} />
+          <Route path='/login' element={<PublicRoute route='login' restricted />} />
+          <Route path='/register' element={<PublicRoute route='register' restricted />} />
         </Routes>
       </Container>
     </div>
-  );
+  ));
 };

@@ -10,10 +10,13 @@ export const Contacts = () => {
     //     dispatch(getAllContacts());
     // }, [dispatch]);
     const contactsList = useSelector(getContactsState);
+
+    // console.log(contactsList.map(contact=> contact.name));
+
     return (
         <div>
             <ContactForm />
-            {contactsList.length > 0 ?
+            {/* {contactsList.length > 0 ?
                 <ul>{
                     contactsList.map(({ id, name, number }) => {
                         return (
@@ -22,7 +25,11 @@ export const Contacts = () => {
                     })
                 }</ul>
                 : <h3>This is no contacts! Please add some contact first.</h3>
-            }
+            } */}
+
+            {contactsList.map(({ id, name, number }) => {
+                <li key={id}>{name}: { number }</li>
+            })}
         </div>
     );
 }

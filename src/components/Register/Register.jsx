@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
+import { Navigate } from "react-router-dom";
 import { registerUser } from "redux/auth/operations";
 
-export const Register = () => {
+export const Register = ({restricted}) => {
     const dispatch = useDispatch();
 
     const handleFormData = (e) => {
@@ -18,21 +19,24 @@ export const Register = () => {
 
     return(
         <div>
-            <form onSubmit={handleFormData}>
-                <label>
-                    <p>Your name:</p>
-                    <input name='name' type='text'/>
-                </label>
-                <label>
-                    <p>Your e-mail:</p>
-                    <input name='email' type='email'/>
-                </label>
-                <label>
-                    <p>Your password:</p>
-                    <input name='password' type='text'/>
-                </label>
-                <button type='submit'>Register</button>
-            </form>
+            {restricted ? 
+                <Navigate to='/' /> :
+                <form onSubmit={handleFormData}>
+                    <label>
+                        <p>Your name:</p>
+                        <input name='name' type='text'/>
+                    </label>
+                    <label>
+                        <p>Your e-mail:</p>
+                        <input name='email' type='email'/>
+                    </label>
+                    <label>
+                        <p>Your password:</p>
+                        <input name='password' type='text'/>
+                    </label>
+                    <button type='submit'>Register</button>
+                </form>
+            }
         </div>
     );
 }

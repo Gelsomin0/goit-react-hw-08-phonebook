@@ -1,16 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addContact, getAllContacts } from "./operations";
 
+const initialState = {
+    contacts: []
+}
+
 export const contactsSlice = createSlice({
     name: 'contacts',
-    initialState: [],
+    initialState,
     extraReducers: {
-        [getAllContacts.fulfilled]: (state, action) => {
-            state = action.payload;
-            console.log(action.payload);
+        [getAllContacts.fulfilled]:(state, action) => {
+            // console.log(action.payload);
+            state.contacts = action.payload;
+            // console.log(state.contacts);
         },
-        [addContact.fulfilled]: (state, action) => {
-            console.log(action);
+        [addContact.fulfilled]:(state, action) => {
+            // console.log(action);
             state = [...action.payload, ...state];
         }
     }

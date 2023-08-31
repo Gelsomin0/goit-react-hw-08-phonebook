@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
+import { Navigate } from "react-router-dom";
 import { logIn } from "redux/auth/operations";
 
-export const Login = () => {
+export const Login = ({restricted}) => {
     const dispatch = useDispatch();
 
     const handleLoginData = (e) => {
@@ -16,17 +17,20 @@ export const Login = () => {
 
     return (
         <div>
-            <form onSubmit={handleLoginData}>
-                <label>
-                    <p>E-mail:</p>
-                    <input name='email' type='email'/>
-                </label>
-                <label>
-                    <p>Password:</p>
-                    <input name='password' type='password'/>
-                </label>
-                <button type='submit'>Login</button>
-            </form>
+            {restricted ? 
+                <Navigate to='/' /> :
+                <form onSubmit={handleLoginData}>
+                    <label>
+                        <p>E-mail:</p>
+                        <input name='email' type='email'/>
+                    </label>
+                    <label>
+                        <p>Password:</p>
+                        <input name='password' type='password'/>
+                    </label>
+                    <button type='submit'>Login</button>
+                </form>
+            }
         </div>
     );
 }

@@ -24,6 +24,9 @@ export const Navigation = () => {
                         <li>
                             <NavLink to='/contacts'>Contacts</NavLink>
                         </li>
+                        <li>
+                            <NavLink to='/favorite_contacts'>Favorite contacts</NavLink>
+                        </li>
                         <li  className={css.register_link}>
                             <span>Hello, {userName}</span>
                             <button onClick={onLogOut}>Logout</button>
