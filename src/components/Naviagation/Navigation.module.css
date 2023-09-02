@@ -9,11 +9,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 30px;
 }
 
 .navBlock {
     display: flex;
     align-items: center;
-    gap: 35px;
+    gap: 10px;
+}
+
+.loginButton {
+    color: #fff;
 }

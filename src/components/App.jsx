@@ -1,12 +1,17 @@
 import { Container } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
+import Layout from "./Layout/Layout"; 
+import MainPage from './MainPage/MainPage';
+import Register from './Register/Register';
+import Login from './Login/Login';
+import ContactsList from './ContactsList/ContactsList';
 
-const Layout = lazy(() => import("./Layout/Layout"));
-const MainPage = lazy(() => import('./MainPage/MainPage'));
-const Register = lazy(() => import("./Register/Register"));
-const Login = lazy(() => import("./Login/Login"));
-const ContactsList = lazy(() => import("./ContactsList/ContactsList"));
+// const Layout = lazy(() => import("./Layout/Layout"));
+// const MainPage = lazy(() => import('./MainPage/MainPage'));
+// const Register = lazy(() => import("./Register/Register"));
+// const Login = lazy(() => import("./Login/Login"));
+// const ContactsList = lazy(() => import("./ContactsList/ContactsList"));
 
 export const App = () => {
   return  (
