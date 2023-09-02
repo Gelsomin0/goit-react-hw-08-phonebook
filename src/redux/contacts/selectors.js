@@ -1,1 +1,0 @@
-export const getContactsState = state => state.contacts.contacts;

@@ -1,41 +1,28 @@
-import { Route, Routes } from "react-router-dom";
 import { Container } from "@mui/material";
-import {
-  Navigation,
-  PrivateRoute,
-  PublicRoute,
-} from './index';
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { refreshUser } from "redux/auth/operations";
-import { getIsFetchingCurrentUser, getToken } from "redux/auth/selectors";
-import { getAllContacts } from "redux/contacts/operations";
+import { Route, Routes } from "react-router-dom";
+import { Suspense, lazy } from "react";
+
+const Layout = lazy(() => import("./Layout/Layout"));
+const MainPage = lazy(() => import('./MainPage/MainPage'));
+const Register = lazy(() => import("./Register/Register"));
+const Login = lazy(() => import("./Login/Login"));
+const ContactsList = lazy(() => import("./ContactsList/ContactsList"));
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
-  // const isTokenHere = useSelector(getToken);
-  
-  useEffect(() => {
-    dispatch(refreshUser());
-    
-    // if (isTokenHere !== null) {
-    //   dispatch(getAllContacts());
-    // }
-  }, [dispatch]);
-
-  return (!isFetchingCurrentUser && (
+  return  (
     <div>
       <Container>
-        <Navigation />
-        <Routes>
-          <Route path='/' index element={<PublicRoute route='/' />} />
-          <Route path='/contacts' element={<PrivateRoute route='contacts' />} />
-          <Route path='/favorite_contacts' element={<PrivateRoute route='favorite_contacts' />} />
-          <Route path='/login' element={<PublicRoute route='login' restricted />} />
-          <Route path='/register' element={<PublicRoute route='register' restricted />} />
-        </Routes>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path='/' element={<Layout />}>
+              <Route path='/' element={<MainPage />} />
+              <Route path='contacts' element={<ContactsList />} />
+              <Route path='register' element={<Register />} /> 
+              <Route path='login' element={<Login />} />
+            </Route>
+          </Routes>
+        </Suspense>
       </Container>
     </div>
-  ));
+  );
 };
