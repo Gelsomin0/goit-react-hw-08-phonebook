@@ -46,3 +46,16 @@ export const logoutUser = createAsyncThunk('user/logout',
         }
     }
 );
+
+export const refreshCurrentUser = createAsyncThunk('user/refresh',
+    async (persistedToken, { rejectWithValue }) => {
+        tokenSetting.set(persistedToken);
+
+        try {
+            const { data } = await axios.get('/users/current');
+            return data;   
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);

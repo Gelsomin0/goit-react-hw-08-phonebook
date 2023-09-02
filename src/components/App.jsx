@@ -1,11 +1,15 @@
 import { Container } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import Layout from "./Layout/Layout"; 
 import MainPage from './MainPage/MainPage';
 import Register from './Register/Register';
 import Login from './Login/Login';
 import ContactsList from './ContactsList/ContactsList';
+import { useDispatch, useSelector } from "react-redux";
+import { refreshCurrentUser } from "redux/auth/auth-operations";
+import { getPersistedToken } from "redux/auth/auth-selectors";
+import { getAllContacts } from "redux/contacts/contacts-operations";
 
 // const Layout = lazy(() => import("./Layout/Layout"));
 // const MainPage = lazy(() => import('./MainPage/MainPage'));
@@ -14,6 +18,14 @@ import ContactsList from './ContactsList/ContactsList';
 // const ContactsList = lazy(() => import("./ContactsList/ContactsList"));
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const persistedToken = useSelector(getPersistedToken);
+
+  useEffect(() => {
+    dispatch(refreshCurrentUser(persistedToken));
+    dispatch(getAllContacts());
+  }, [dispatch]);
+
   return  (
     <div>
       <Container>
