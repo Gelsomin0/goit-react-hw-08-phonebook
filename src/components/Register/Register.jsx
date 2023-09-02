@@ -1,12 +1,14 @@
-import { AccountCircle, Mail, Password } from "@mui/icons-material";
+import { AccountCircle, Create, Mail, Password } from "@mui/icons-material";
 import { Box, Button, Paper, TextField } from "@mui/material";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { registerUser } from "redux/auth/auth-operations";
 
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const dispatch = useDispatch();
 
     const handleFormData = ({target}) => {
         if (target.name === 'name') setName(target.value);
@@ -14,9 +16,18 @@ const Register = () => {
         if (target.name === 'password') setPassword(target.value);
     }
 
+    const submitRegisterForm = (e) => {
+        e.preventDefault();
+        
+        dispatch(registerUser({ name, email, password }));
+        setName('');
+        setEmail('');
+        setPassword('');
+    }
+
     return (
         <div>
-            <form>
+            <form onSubmit={submitRegisterForm}>
                 <Paper
                     elevation={3}
                     sx={{
@@ -59,7 +70,11 @@ const Register = () => {
                             onChange={handleFormData}
                         />
                     </Box>
-                    <Button variant='contained'>Create account</Button>
+                    <Button
+                        type='submit'
+                        variant='contained'
+                        endIcon={<Create />}
+                    >Create account</Button>
                 </Paper>
             </form>
         </div>
