@@ -37,3 +37,15 @@ export const loginUser = createAsyncThunk('users/login',
         }
     }
 );
+
+export const logoutUser = createAsyncThunk('users/logout',
+    async (_, { rejectWithValue }) => {
+        try {
+            await axios.post('/users/logout');
+            tokenConfig.unset();
+            
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);

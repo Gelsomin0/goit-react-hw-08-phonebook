@@ -6,7 +6,7 @@ const PrivateRoutes = () => {
     const isLoggedIn = useSelector(getIsLoggedIn);
     
     return (
-        isLoggedIn ? <Outlet /> : <Navigate to='/register' />
+        isLoggedIn ? <Outlet /> : <Navigate to='/login' />
     );
 }
 

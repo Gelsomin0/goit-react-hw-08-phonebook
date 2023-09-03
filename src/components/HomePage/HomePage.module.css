@@ -1,0 +1,34 @@
+.appBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 35px;
+    background-color: #34495e;
+}
+
+.userBlock {
+    font-size: 17px;
+    color: #fff;
+}
+
+.userName {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.logoutButton {
+    color: #fff;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: 1px solid transparent;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 7px;
+    padding: 5px 20px;
+    transition: border 250ms ease;
+}
+
+.logoutButton:is(:hover, :focus) {
+    border: 1px solid #fff;
+}
