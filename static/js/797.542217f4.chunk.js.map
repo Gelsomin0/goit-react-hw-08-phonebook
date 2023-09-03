@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/797.542217f4.chunk.js","mappings":"0JAMA,UANc,WACV,OACI,kCAEP,C","sources":["components/Login/Login.jsx"],"sourcesContent":["const Login = () => {\n    return (\n        <div>Login</div>\n    );\n}\n\nexport default Login;"],"names":[],"sourceRoot":""}

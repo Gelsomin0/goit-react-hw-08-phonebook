@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/647.366cbd39.chunk.js","mappings":"0JAOA,UAPqB,WACjB,OACI,0CAGP,C","sources":["components/ContactsList/ContactsList.jsx"],"sourcesContent":["const ContactsList = () => {\n    return (\n        <div>Contacts\n            List</div>\n    );\n}\n\nexport default ContactsList;"],"names":[],"sourceRoot":""}
