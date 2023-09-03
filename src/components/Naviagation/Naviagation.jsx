@@ -3,7 +3,7 @@ import css from './Navigation.module.css';
 import { Button, ButtonGroup } from "@mui/material";
 import { ExitToApp, HowToReg } from "@mui/icons-material";
 import { useSelector } from "react-redux";
-import { getIsLoggedIn, getUserName } from "redux/auth/auth-selectors";
+import { getIsLoggedIn } from "redux/auth/auth-selectors";
 import UserMenu from "components/UserMenu/UserMenu";
 
 const Naviagation = () => {

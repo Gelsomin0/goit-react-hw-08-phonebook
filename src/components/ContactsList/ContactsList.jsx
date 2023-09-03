@@ -14,7 +14,7 @@ import {
     TextField} from "@mui/material";
 import ContactsForm from "components/ContactsForm/ContactsForm";
 import Filter from "components/Filter/Filter";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteContacts } from "redux/contacts/contacts-operations";
 import { getContactList } from "redux/contacts/contacts-selectors";
@@ -26,27 +26,27 @@ const ContactsList = () => {
     // const contactListSelector = useSelector(getContactList).sort((firstContact, secondContact) => {
     //     firstContact.name.localeCompare(secondContact.name);
     // });
-    const [contactList, setContactList] = useState([]);
+    // const [contactList, setContactList] = useState([]);
     const [editContact, setEditContact] = useState(false);
     let isFinishOfList = 0;
 
-    const getExistedConatcts = () => {
-        setContactList(contactListSelector);
-    }
+    // const getExistedConatcts = () => {
+    //     setContactList(contactListSelector);
+    // }
 
     const canEditCurrentContact = () => {
         setEditContact(!editContact);
     }
 
-    useEffect(() => {
-        getExistedConatcts();
-    }, [getExistedConatcts]);
+    // useEffect(() => {
+    //     getExistedConatcts();
+    // }, [getExistedConatcts]);
 
     return (
         <>
             <ContactsForm />
             <Filter />
-            {contactList && (
+            {contactListSelector && (
                 <List sx={{
                     width: '100%',
                     maxWidth: 430,
@@ -54,7 +54,7 @@ const ContactsList = () => {
                     margin: '0 auto',
                     marginBottom: '30px'
                 }}>
-                    {contactList.map(({ id, name, number }) => {
+                    {contactListSelector.map(({ id, name, number }) => {
                         const avatarFirstLetter = name.slice(0, 1).toUpperCase();
                         const numberText = `${number}`;
                         isFinishOfList += 1;

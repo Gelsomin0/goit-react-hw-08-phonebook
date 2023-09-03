@@ -2,7 +2,6 @@ import { Check, Mail, Password } from "@mui/icons-material";
 import { Box, Button, Paper, TextField } from "@mui/material";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Navigate } from "react-router-dom";
 import { loginUser } from "redux/auth/auth-operations";
 
 const Login = () => {

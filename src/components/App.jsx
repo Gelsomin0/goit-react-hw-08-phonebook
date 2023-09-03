@@ -1,6 +1,6 @@
 import { Container } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
-import { Suspense, lazy, useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import Layout from "./Layout/Layout"; 
 import MainPage from './MainPage/MainPage';
 import Register from './Register/Register';
@@ -24,7 +24,7 @@ export const App = () => {
   useEffect(() => {
     dispatch(refreshCurrentUser(persistedToken));
     dispatch(getAllContacts());
-  }, [dispatch]);
+  }, [dispatch, persistedToken]);
 
   return  (
     <div>
