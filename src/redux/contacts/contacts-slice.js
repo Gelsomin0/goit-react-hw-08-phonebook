@@ -1,5 +1,5 @@
 const { createSlice } = require("@reduxjs/toolkit");
-const { getAllContacts } = require("./contacts-operations");
+const { getAllContacts, createContacts, deleteContacts } = require("./contacts-operations");
 
 const initialState = {
     contactList: [],
@@ -12,5 +12,14 @@ export const contactsSlice = createSlice({
         [getAllContacts.fulfilled]: (state, { payload }) => {
             state.contactList = payload;
         },
+        [createContacts.fulfilled]: (state, { payload }) => {
+            state.contactList = [...state.contactList, payload ];
+        },
+        [deleteContacts.fulfilled]: (state, { payload }) => {
+            state.contactList = state.contactList.filter((contact)=> contact.id !== payload.id);
+        },
+        [deleteContacts.rejected]: (state, { payload }) => {
+            console.log(payload);
+        }
     }
 });
