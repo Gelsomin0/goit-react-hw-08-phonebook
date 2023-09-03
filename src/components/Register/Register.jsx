@@ -1,8 +1,8 @@
-import { AccountCircle, Create, Mail, Password } from "@mui/icons-material";
-import { Box, Button, Paper, TextField } from "@mui/material";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { registerUser } from "redux/auth/auth-operations";
+import { NavLink } from 'react-router-dom';
+import css from './Register.module.css';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createUser } from 'redux/auth/authOperations';
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -10,74 +10,60 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
 
-    const handleFormData = ({target}) => {
+    const handleRegisterData = ({target}) => {
         if (target.name === 'name') setName(target.value);
         if (target.name === 'email') setEmail(target.value);
         if (target.name === 'password') setPassword(target.value);
     }
 
-    const submitRegisterForm = (e) => {
+    const createUserAccount = (e) => {
         e.preventDefault();
-        
-        dispatch(registerUser({ name, email, password }));
+        dispatch(createUser({ name, email, password }));
         setName('');
         setEmail('');
         setPassword('');
     }
 
     return (
-        <div>
-            <form onSubmit={submitRegisterForm}>
-                <Paper
-                    elevation={3}
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: 2,
-                        alignItems: 'center',
-                        padding: '25px 30px',
-                        width: '400px',
-                        margin: '0 auto'
-                    }}
-                >
-                    <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-                        <AccountCircle  sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                        <TextField
-                            name='name'
-                            value={name}
-                            label='Name'
-                            variant='standard'
-                            onChange={handleFormData}
-                        />
-                    </Box>
-                    <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-                        <Mail  sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                        <TextField
-                            name='email'
-                            value={email}
-                            label='E-mail'
-                            variant='standard'
-                            onChange={handleFormData}
-                        />
-                    </Box>
-                    <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-                        <Password  sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                        <TextField
-                            name='password'
-                            value={password}
-                            label='Password'
-                            variant='standard'
-                            onChange={handleFormData}
-                        />
-                    </Box>
-                    <Button
-                        type='submit'
-                        variant='contained'
-                        endIcon={<Create />}
-                    >Create account</Button>
-                </Paper>
-            </form>
-        </div>
+        <form className={css.formContainer} onSubmit={createUserAccount}>
+            <h3>Create account</h3>
+            <hr className={css.horisontalLine} />
+            <label>
+                <h5 className={css.inputTitle}>Enter your name:</h5>
+                <input 
+                    className={css.formInput} 
+                    value={name} 
+                    type='text' 
+                    name='name' 
+                    onChange={handleRegisterData} 
+                />
+            </label>
+            <label>
+                <h5 className={css.inputTitle}>Enter your e-mail address:</h5>
+                <input 
+                    className={css.formInput} 
+                    value={email} 
+                    type='text' 
+                    name='email' 
+                    onChange={handleRegisterData} 
+                />
+            </label>
+            <label>
+                <h5 className={css.inputTitle}>Enter your password:</h5>
+                <input 
+                    className={css.formInput} 
+                    value={password} 
+                    type='password' 
+                    name='password' 
+                    onChange={handleRegisterData} 
+                />
+            </label>
+            <div className={css.submitSection}>
+                <button className={css.mainButton} type='submit'>Register</button>
+                <p>or</p>
+                <NavLink className={css.secondaryButton} to='/login'>Login</NavLink>
+            </div>
+        </form>
     );
 }
 

@@ -1,71 +1,56 @@
-import { Check, Mail, Password } from "@mui/icons-material";
-import { Box, Button, Paper, TextField } from "@mui/material";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { loginUser } from "redux/auth/auth-operations";
+import { NavLink } from 'react-router-dom';
+import css from './Login.module.css';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginUser } from 'redux/auth/authOperations';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
 
-    const handleFormData = ({ target }) => {
+    const handleLoginData = ({ target }) => {
         if (target.name === 'email') setEmail(target.value);
         if (target.name === 'password') setPassword(target.value);
     }
 
-    const enterSubmitForm = (e) => {
+    const submitLogin = (e) => {
         e.preventDefault();
-
         dispatch(loginUser({ email, password }));
-
         setEmail('');
         setPassword('');
     }
 
     return (
-        <div>
-            <form onSubmit={enterSubmitForm}>
-                <Paper
-                    elevation={3}
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: 2,
-                        alignItems: 'center',
-                        padding: '25px 30px',
-                        width: '400px',
-                        margin: '0 auto'
-                    }}
-                >
-                    <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-                        <Mail  sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                        <TextField
-                            name='email'
-                            value={email}
-                            label='E-mail'
-                            variant='standard'
-                            onChange={handleFormData}
-                        />
-                    </Box>
-                    <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-                        <Password  sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                        <TextField
-                            name='password'
-                            value={password}
-                            label='Password'
-                            variant='standard'
-                            onChange={handleFormData}
-                        />
-                    </Box>
-                    <Button
-                        type='submit'
-                        variant='contained'
-                        endIcon={<Check />}
-                    >Enter</Button>
-                </Paper>
-            </form>
-        </div>
+        <form className={css.formContainer} onSubmit={submitLogin}>
+            <h3>Login</h3>
+            <hr className={css.horisontalLine} />
+            <label>
+                <h5 className={css.inputTitle}>Enter your e-mail address:</h5>
+                <input 
+                    onChange={handleLoginData} 
+                    className={css.formInput} 
+                    type='text' 
+                    name='email'
+                    value={email}
+                />
+            </label>
+            <label>
+                <h5 className={css.inputTitle}>Enter your password:</h5>
+                <input 
+                    onChange={handleLoginData} 
+                    className={css.formInput} 
+                    type='password' 
+                    name='password'
+                    value={password}
+                />
+            </label>
+            <div className={css.submitSection}>
+                <button className={css.mainButton} type='submit'>Login</button>
+                <p>or</p>
+                <NavLink className={css.secondaryButton} to='/register'>Register</NavLink>
+            </div>
+        </form>
     );
 }
 
