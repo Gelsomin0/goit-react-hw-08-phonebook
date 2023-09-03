@@ -1,0 +1,15 @@
+.filterBar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 15px;
+}
+
+.horisontalLine {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.filterInput {
+    padding: 5px 15px;
+}

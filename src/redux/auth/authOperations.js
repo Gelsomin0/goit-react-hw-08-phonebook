@@ -49,3 +49,20 @@ export const logoutUser = createAsyncThunk('users/logout',
         }
     }
 );
+
+export const refreshUser = createAsyncThunk('users/refresh',
+    async (_, { getState, rejectWithValue }) => {
+        if (getState().auth.token === null) {
+            return rejectWithValue();
+        }
+
+        try {
+            tokenConfig.set(getState().auth.token);
+            const { data } = await axios.get('/users/current');
+            return data;
+            
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);

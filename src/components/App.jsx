@@ -1,13 +1,21 @@
 import { Container } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import PrivateRoutes from "utils/PrivateRoutes";
 import Login from "./Login/Login";
 import HomePage from "./HomePage/HomePage";
 import Register from "./Register/Register";
 import PublicRoutes from "utils/PublicRoutes";
+import { useDispatch } from "react-redux";
+import { refreshUser } from "redux/auth/authOperations";
 
 export const App = () => {
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   return  (
     <div>
       <Container>

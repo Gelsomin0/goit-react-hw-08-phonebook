@@ -1,0 +1,28 @@
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.contactInput {
+    padding: 4px 10px;
+    font-size: 17px;
+    margin-top: 4px;
+}
+
+.addButton {
+    padding: 8px 15px;
+    background-color: #27a327;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}

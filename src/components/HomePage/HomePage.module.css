@@ -4,6 +4,7 @@
     justify-content: space-between;
     padding: 20px 35px;
     background-color: #34495e;
+    margin-bottom: 30px;
 }
 
 .userBlock {
@@ -31,4 +32,11 @@
 
 .logoutButton:is(:hover, :focus) {
     border: 1px solid #fff;
+}
+
+.mainContent {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 25px;
 }
