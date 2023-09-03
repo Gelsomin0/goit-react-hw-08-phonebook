@@ -92,7 +92,7 @@ const ContactsList = () => {
                                     </ListItemAvatar>
                                     <ListItemText primary={name} secondary={numberText} />
                                 </ListItem>
-                                {isFinishOfList !== contactList.length && <Divider variant='middle' />}
+                                {isFinishOfList !== contactListSelector.length && <Divider variant='middle' />}
                             </div>
                         );
                     })}
