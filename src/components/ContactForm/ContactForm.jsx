@@ -22,11 +22,11 @@ const ContactForm = () => {
         e.preventDefault();
         let isExist = false;
 
-        actualContactList.find((contact) => {
+        actualContactList.map((contact) => {
             if (contact.name.toLowerCase() === name.toLowerCase()) { 
-                isExist = true;
                 toastContactIsAlreadyExist(name);
-            }
+                return isExist = true;
+            }      
             return contact;
         })
 
