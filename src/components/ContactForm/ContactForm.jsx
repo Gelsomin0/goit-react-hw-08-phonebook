@@ -27,6 +27,7 @@ const ContactForm = () => {
                 isExist = true;
                 toastContactIsAlreadyExist(name);
             }
+            return contact;
         })
 
         if (!isExist) {

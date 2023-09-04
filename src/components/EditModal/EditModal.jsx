@@ -15,7 +15,7 @@ const EditModal = ({ contactId, handleOpenModal, contactName, contactNumber }) =
     useEffect(() => {
         setName(contactName);
         setNumber(contactNumber);
-    }, []);
+    }, [contactName, contactNumber]);
 
     const handleInputData = ({ target }) => {
         if (target.name === 'name') setName(target.value);
@@ -31,6 +31,7 @@ const EditModal = ({ contactId, handleOpenModal, contactName, contactNumber }) =
                 toastIsAlreadyExist(name);
                 isExist = true;
             }
+            return contact;
         });
 
         if (!isExist) {            
