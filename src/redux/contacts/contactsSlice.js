@@ -20,12 +20,8 @@ export const contatcSlice = createSlice({
             state.contactList = state.contactList.filter((contact) => contact.id !== payload.id);
         },
         [updtaeContact.fulfilled]: (state, { payload }) => {
-            state.contactList = state.contactList.map((contact) => {
-                if (contact.id === payload.id) {
-                    contact.name = payload.name;
-                    contact.number = payload.number;
-                }
-            })
+            const finedIndex = state.contactList.findIndex(el => el.id === payload.id);
+            state.contactList.splice(finedIndex, 1, payload);
         }
     }
 });

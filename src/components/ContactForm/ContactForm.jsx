@@ -1,12 +1,17 @@
 import { useState } from 'react';
 import css from './ContactForm.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/contactsOperations';
+import { getContactList } from 'redux/contacts/contactsSelectors';
+import toast, { Toaster } from 'react-hot-toast';
 
 const ContactForm = () => {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
     const dispatch = useDispatch();
+    const actualContactList = useSelector(getContactList);
+    const toastContactIsAlreadyExist = (name) => toast.error(`Conatct with name ${name} is already exist!`);
+    const toasIsSuccessfullyCreated = (name) => toast.success(`${name} is added into contacts list!`);
 
     const handleConatctData = ({target}) => {
         if (target.name === 'name') setName(target.value);
@@ -15,13 +20,27 @@ const ContactForm = () => {
 
     const submitNewContact = (e) => {
         e.preventDefault();
-        dispatch(addContact({ name, number }));
+        let isExist = false;
+
+        actualContactList.find((contact) => {
+            if (contact.name.toLowerCase() === name.toLowerCase()) { 
+                isExist = true;
+                toastContactIsAlreadyExist(name);
+            }
+        })
+
+        if (!isExist) {
+            dispatch(addContact({ name, number }));
+            toasIsSuccessfullyCreated(name);
+        }     
+        
         setName('');
         setNumber('');
     }
 
     return (
         <form className={css.contactForm} onSubmit={submitNewContact}>
+            <Toaster />
             <label>
                 <h5>Contacts name:</h5>
                 <input 
@@ -30,6 +49,7 @@ const ContactForm = () => {
                     value={name}
                     name='name' 
                     type='text'
+                    required
                 />
             </label>
             <label>
@@ -40,6 +60,7 @@ const ContactForm = () => {
                     value={number}
                     name='number' 
                     type='tel'
+                    required
                 />
             </label>
             <button className={css.addButton}>Add contact</button>

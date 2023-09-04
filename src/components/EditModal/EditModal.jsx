@@ -1,12 +1,21 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import css from './EditModal.module.css';
 import { updtaeContact } from 'redux/contacts/contactsOperations';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getContactList } from 'redux/contacts/contactsSelectors';
+import toast from 'react-hot-toast';
 
-const EditModal = ({ id, handleOpenModal, oldName, oldNumber }) => {
+const EditModal = ({ contactId, handleOpenModal, contactName, contactNumber }) => {
     const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
+    const contactList = useSelector(getContactList);
+    const toastIsAlreadyExist = (name) => toast.error(`Contact with name ${name} is already exist! Please, change name.`);
+
+    useEffect(() => {
+        setName(contactName);
+        setNumber(contactNumber);
+    }, []);
 
     const handleInputData = ({ target }) => {
         if (target.name === 'name') setName(target.value);
@@ -15,13 +24,25 @@ const EditModal = ({ id, handleOpenModal, oldName, oldNumber }) => {
  
     const handleUpdateForm = (e) => {
         e.preventDefault();
-        dispatch(updtaeContact({
-            contactNewData: { name, number },
-            id,
-        }));
-        setName('');
-        setNumber('');
-        handleOpenModal();
+        let isExist = false;
+
+        contactList.map((contact) => {
+            if (contact.name === name) {
+                toastIsAlreadyExist(name);
+                isExist = true;
+            }
+        });
+
+        if (!isExist) {            
+            dispatch(updtaeContact({
+                contactNewData: { name, number },
+                contactId,
+            }));
+
+            setName('');
+            setNumber('');
+            handleOpenModal();
+        }
     }
 
     return (
@@ -31,7 +52,7 @@ const EditModal = ({ id, handleOpenModal, oldName, oldNumber }) => {
                     <h4>Edit current contact</h4>
                     <hr className={css.horisontalLine} />
                     <label>
-                        <p className={css.inputTitle}>Old name: <h4>{ oldName }</h4></p>
+                        <p className={css.inputTitle}>Name:</p>
                         <input 
                             onChange={handleInputData}
                             className={css.editInput} 
@@ -42,7 +63,7 @@ const EditModal = ({ id, handleOpenModal, oldName, oldNumber }) => {
                         />
                     </label>
                     <label>
-                        <p className={css.inputTitle}>Old number: <h4>{ oldNumber }</h4></p>
+                        <p className={css.inputTitle}>Number:</p>
                         <input 
                             onChange={handleInputData}
                             className={css.editInput}
