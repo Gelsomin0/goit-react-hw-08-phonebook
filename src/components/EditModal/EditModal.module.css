@@ -1,0 +1,72 @@
+.backdrop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}
+
+.modalWindow {
+    display: block;
+    position: relative;
+    padding: 50px 35px 35px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.horisontalLine {
+    width: 100%;
+}
+
+.formSection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    min-width: 250px;
+}
+
+.inputTitle {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 14px;
+    font-weight: 300;
+    margin: 5px 10px;
+}
+
+.editInput {
+    padding: 7px 20px;
+    font-size: 17px;
+}
+
+.buttonsSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.editButton {
+    border: 1px solid #27a327;
+    border-radius: 7px;
+    padding: 4px 10px;
+    color: #383838;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 250ms ease, background-color 250ms ease;
+}
+
+.editButton:is(:hover, :focus) {
+    background-color: #27a327;
+    color: #fff;
+}

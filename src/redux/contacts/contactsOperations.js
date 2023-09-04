@@ -11,3 +11,36 @@ export const getAllContacts = createAsyncThunk('contacts/getAll',
         }
     }
 );
+
+export const addContact = createAsyncThunk('contacts/add',
+    async (contactData, { rejectWithValue }) => {
+        try {
+            const { data } = await axios.post('/contacts', contactData);
+            return data;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+export const deleteContact = createAsyncThunk('contacts/delete',
+    async (id, { rejectWithValue }) => {
+        try {
+            const { data } = await axios.delete(`/contacts/${id}`);
+            return data;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+export const updtaeContact = createAsyncThunk('contacts/update',
+    async ({contactNewData, id}, { rejectWithValue }) => {
+        try {
+            const { data } = await axios.patch(`/contacts/${id}`, contactNewData);
+            return data;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
