@@ -34,6 +34,9 @@ export const authSlice = createSlice({
             state.user = payload;
             state.isLoggedIn = true;
             state.isFetchingUser = false;
+        },
+        [refreshUser.rejected]: (state) => {
+            state.isFetchingUser = false;
         }
     }
 });

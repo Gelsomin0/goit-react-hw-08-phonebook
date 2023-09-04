@@ -4,6 +4,14 @@ import { contatcSlice } from './contacts/contactsSlice';
 import storage from 'redux-persist/lib/storage';
 import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from 'redux-persist/es/persistStore';
+import {
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 
 const persistAuthConfig = {
   key: 'auth',
@@ -18,6 +26,12 @@ export const store = configureStore({
     auth: authPersistedReducer,
     contacts: contatcSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 export const persistor = persistStore(store);
