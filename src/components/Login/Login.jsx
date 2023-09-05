@@ -9,6 +9,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
+    const toastEnterFormData = () => toast.error('Please, ented your email and password!');
 
     const handleLoginData = ({ target }) => {
         if (target.name === 'email') setEmail(target.value);
@@ -19,8 +20,9 @@ const Login = () => {
         e.preventDefault();
         let canRegister = true;
 
-        if(name === '' || password === '') canRegister = false;
+        if(email === '' || password === '') canRegister = false;
         if(canRegister) dispatch(loginUser({ email, password }));
+        if(!canRegister) toastEnterFormData();
 
         setEmail('');
         setPassword('');
