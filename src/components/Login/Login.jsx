@@ -3,6 +3,7 @@ import css from './Login.module.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from 'redux/auth/authOperations';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -16,7 +17,11 @@ const Login = () => {
 
     const submitLogin = (e) => {
         e.preventDefault();
-        dispatch(loginUser({ email, password }));
+        let canRegister = true;
+
+        if(name === '' || password === '') canRegister = false;
+        if(canRegister) dispatch(loginUser({ email, password }));
+
         setEmail('');
         setPassword('');
     }
