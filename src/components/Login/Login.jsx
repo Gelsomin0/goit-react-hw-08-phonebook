@@ -3,11 +3,13 @@ import css from './Login.module.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from 'redux/auth/authOperations';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
+    const toastEnterFormData = () => toast.error('Please, ented your email and password!');
 
     const handleLoginData = ({ target }) => {
         if (target.name === 'email') setEmail(target.value);
@@ -16,7 +18,12 @@ const Login = () => {
 
     const submitLogin = (e) => {
         e.preventDefault();
-        dispatch(loginUser({ email, password }));
+        let canRegister = true;
+
+        if(email === '' || password === '') canRegister = false;
+        if(canRegister) dispatch(loginUser({ email, password }));
+        if(!canRegister) toastEnterFormData();
+
         setEmail('');
         setPassword('');
     }
