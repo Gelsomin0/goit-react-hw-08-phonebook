@@ -1,11 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import css from './Login.module.css';
-import { forwardRef, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from 'redux/auth/authOperations';
 import toast from 'react-hot-toast';
 import { Button, Typography } from '@mui/material';
-import Register from 'components/Register/Register';
 
 const Login = () => {
     const [email, setEmail] = useState('');

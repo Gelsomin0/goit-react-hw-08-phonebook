@@ -4,7 +4,7 @@ import css from './HomePage.module.css';
 import { logoutUser } from "redux/auth/authOperations";
 import ContactForm from "components/ContactForm/ContactForm";
 import ContactList from "components/ContactList/ContactList";
-import { Button, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 
 const HomePage = () => {
     const userData = useSelector(getUserData);

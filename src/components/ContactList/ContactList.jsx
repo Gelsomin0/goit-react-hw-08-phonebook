@@ -39,15 +39,7 @@ const ContactList = () => {
         setContactNumber(e.target.parentElement.querySelector('#number').textContent);
         setContactId(id)
 
-        handleOpenModal()
-        // console.log(name);
-
-        // return (
-        //     <EditModal
-        //         id={id}
-        //         handleOpenModal={handleOpenModal}
-        //     />
-        // );
+        handleOpenModal();
     }
 
     const listItem = (id, name, number) => {
@@ -70,9 +62,10 @@ const ContactList = () => {
         );
     };
 
-    const filteredContactsList = gettedContactList.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase())).map(({ id, name, number }) => {
-        return listItem(id, name, number);
-    });
+    const filteredContactsList = gettedContactList.filter((contact) => contact.name.toLowerCase()
+        .includes(filter.toLowerCase())).map(({ id, name, number }) => {
+            return listItem(id, name, number);
+        });
 
     return (
         <>
