@@ -33,6 +33,7 @@ const Login = () => {
                     type='text' 
                     name='email'
                     value={email}
+                    required
                 />
             </label>
             <label>
@@ -43,6 +44,7 @@ const Login = () => {
                     type='password' 
                     name='password'
                     value={password}
+                    required
                 />
             </label>
             <div className={css.submitSection}>

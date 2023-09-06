@@ -68,7 +68,11 @@ const ContactList = () => {
                 >Delete</button>
             </li>
         );
-    }
+    };
+
+    const filteredContactsList = gettedContactList.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase())).map(({ id, name, number }) => {
+        return listItem(id, name, number);
+    });
 
     return (
         <>
@@ -86,16 +90,28 @@ const ContactList = () => {
                 </div>
 
                 {gettedContactList && !filter ? (
-                    <ul>
-                        {gettedContactList.map(({ id, name, number }) => {
-                            return listItem(id, name, number);
-                        })}
-                    </ul>) :
-                    <ul>
-                        {gettedContactList.filter((contact)=> contact.name.toLowerCase().includes(filter.toLowerCase())).map(({ id, name, number }) => {
-                            return listItem(id, name, number);
-                        })}
-                    </ul>
+                    <>
+                        <p className={css.numberOfContacts}>{ gettedContactList.length } contacts in this collection</p>
+                        <ul>
+                            {gettedContactList.map(({ id, name, number }) => {
+                                return listItem(id, name, number);
+                            })}
+                        </ul>
+                    </>) : 
+                    <>
+                        {
+                            filteredContactsList.length > 1 ?
+                                <p className={css.numberOfContacts}>Founded {filteredContactsList.length} contacts</p>
+                            : (
+                                filteredContactsList.length ?
+                                <p className={css.numberOfContacts}>Founded {filteredContactsList.length} contact</p> :
+                                <p className={css.numberOfContacts}>Not found any contact</p>
+                            )
+                        }
+                        <ul>
+                            {filteredContactsList}
+                        </ul>
+                    </>
                 }
             </div>
         </>
