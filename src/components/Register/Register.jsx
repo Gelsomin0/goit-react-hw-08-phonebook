@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createUser } from 'redux/auth/authOperations';
 import toast, { Toaster } from 'react-hot-toast';
+import { Button, Typography } from '@mui/material';
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -90,9 +91,14 @@ const Register = () => {
                     />
                 </label>
                 <div className={css.submitSection}>
-                    <button className={css.mainButton} type='submit'>Register</button>
-                    <p>or</p>
-                    <NavLink className={css.secondaryButton} to='/login'>Login</NavLink>
+                    <Button type='submit' variant='contained'>Register</Button>
+                    <Typography>or</Typography>
+                    <Button variant='outlined'>
+                        <NavLink
+                            className={css.secondaryButton}
+                            to='/login'
+                        >Login</NavLink>
+                    </Button>
                 </div>
             </form>
         </>

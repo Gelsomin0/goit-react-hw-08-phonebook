@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import css from './Login.module.css';
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from 'redux/auth/authOperations';
 import toast from 'react-hot-toast';
+import { Button, Typography } from '@mui/material';
+import Register from 'components/Register/Register';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -55,9 +57,11 @@ const Login = () => {
                 />
             </label>
             <div className={css.submitSection}>
-                <button className={css.mainButton} type='submit'>Login</button>
-                <p>or</p>
-                <NavLink className={css.secondaryButton} to='/register'>Register</NavLink>
+                <Button type='submit' variant='contained'>Login</Button>
+                <Typography>or</Typography>
+                <Button variant='outlined'>
+                    <NavLink to='/register'>Register</NavLink>
+                </Button>
             </div>
         </form>
     );

@@ -4,6 +4,7 @@ import { updtaeContact } from 'redux/contacts/contactsOperations';
 import { useEffect, useState } from 'react';
 import { getContactList } from 'redux/contacts/contactsSelectors';
 import toast from 'react-hot-toast';
+import { Button } from '@mui/material';
 
 const EditModal = ({ contactId, handleOpenModal, contactName, contactNumber }) => {
     const dispatch = useDispatch();
@@ -75,15 +76,12 @@ const EditModal = ({ contactId, handleOpenModal, contactName, contactNumber }) =
                         />
                     </label>
                     <div className={css.buttonsSection}>
-                        <button
-                            type='submit'
-                            className={css.editButton}
-                        >Update</button>
-                        <button
+                        <Button type='submit' variant='contained'>Update</Button>
+                        <Button
                             type='button'
-                            className={css.editButton}
                             onClick={handleOpenModal}
-                        >Cancel</button>
+                            variant='outlined'
+                        >Cancel</Button>
                     </div>
                 </form>
             </div>

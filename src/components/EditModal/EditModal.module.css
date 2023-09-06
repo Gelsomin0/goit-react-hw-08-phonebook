@@ -52,21 +52,3 @@
     justify-content: center;
     gap: 10px;
 }
-
-.editButton {
-    border: 1px solid #27a327;
-    border-radius: 7px;
-    padding: 4px 10px;
-    color: #383838;
-    background-color: transparent;
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: color 250ms ease, background-color 250ms ease;
-}
-
-.editButton:is(:hover, :focus) {
-    background-color: #27a327;
-    color: #fff;
-}

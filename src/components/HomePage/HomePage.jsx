@@ -4,6 +4,7 @@ import css from './HomePage.module.css';
 import { logoutUser } from "redux/auth/authOperations";
 import ContactForm from "components/ContactForm/ContactForm";
 import ContactList from "components/ContactList/ContactList";
+import { Button, Typography } from "@mui/material";
 
 const HomePage = () => {
     const userData = useSelector(getUserData);
@@ -18,9 +19,20 @@ const HomePage = () => {
             <div className={css.appBar}>
                 <div className={css.userBlock}>Wellcome,
                     <span className={css.userName}> {userData.name} </span>
-                    (<i>{userData.email}</i>)
+                    ( <i>{userData.email}</i> )
                 </div>
-                <button className={css.logoutButton} onClick={logoutCurrentUser}>Logout</button>
+                <Button
+                    sx={{
+                        color: '#cecece',
+                        borderColor: '#cecece',
+                        '&:hover': {
+                            color: '#fff',
+                            borderColor: '#fff'
+                        }
+                    }}
+                    variant="outlined"
+                    onClick={logoutCurrentUser}
+                >Logout</Button>
             </div>
             <main className={css.mainContent}>
                 <ContactForm />

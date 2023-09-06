@@ -38,25 +38,3 @@
     justify-content: center;
     gap: 10px;
 }
-
-.mainButton {
-    padding: 8px 20px;
-    font-size: 18px;
-    text-transform: uppercase;
-    cursor: pointer;
-    color: #fff;
-    background-color: #27a327;
-    border-radius: 4px;
-    border: none;
-    outline: none;
-}
-
-.secondaryButton {
-    padding: 8px 20px;
-    font-size: 16px;
-    text-transform: uppercase;
-    cursor: pointer;
-    color: #27a327;
-    border: 1px solid #27a327;
-    border-radius: 4px;
-}
