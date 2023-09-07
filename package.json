@@ -47,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "prop-types": "^15.8.1",
     "react-hot-toast": "^2.4.1",
     "redux-persist": "^6.0.0"
   }

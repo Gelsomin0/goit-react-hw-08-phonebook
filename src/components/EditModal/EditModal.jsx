@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { getContactList } from 'redux/contacts/contactsSelectors';
 import toast from 'react-hot-toast';
 import { Button } from '@mui/material';
+import PropTypes from 'prop-types';
 
 const EditModal = ({ contactId, handleOpenModal, contactName, contactNumber }) => {
     const dispatch = useDispatch();
@@ -90,3 +91,10 @@ const EditModal = ({ contactId, handleOpenModal, contactName, contactNumber }) =
 }
 
 export default EditModal;
+
+EditModal.propTypes = {
+    contactId: PropTypes.string,
+    handleOpenModal: PropTypes.func,
+    contactName: PropTypes.string,
+    contactNumber: PropTypes.string,
+}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import css from './Filter.module.css';
+import PropTypes from 'prop-types';
 
 const Filter = ({ filteredList }) => {
     const [filter, setFilter] = useState('')
@@ -29,3 +30,7 @@ const Filter = ({ filteredList }) => {
 }
 
 export default Filter;
+
+Filter.PropTypes = {
+    filteredList: PropTypes.array,
+}
