@@ -31,6 +31,7 @@ const Filter = ({ filteredList }) => {
 
 export default Filter;
 
-Filter.PropTypes = {
+
+Filter.propTypes = {
     filteredList: PropTypes.array,
 }
